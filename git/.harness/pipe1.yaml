@@ -1,0 +1,30 @@
+pipeline:
+    name: pipe1
+    identifier: pipe1
+    projectIdentifier: Git_Experience
+    orgIdentifier: default
+    tags: {}
+    stages:
+        - stage:
+              name: steps
+              identifier: steps
+              description: ""
+              type: CI
+              spec:
+                  cloneCodebase: false
+                  infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                          connectorRef: account.ProdGKE
+                          namespace: harness
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: abc
+                                identifier: abc
+                                spec:
+                                    connectorRef: account.DockerHubDiego
+                                    image: alpine
+                                    command: echo ""
+                                    privileged: false
